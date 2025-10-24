@@ -1,0 +1,78 @@
+# Configuration file for Seguridad Inteligente project
+
+# Data paths
+data:
+  raw_path: "data/raw/telegram_export/"
+  processed_path: "data/processed/"
+  output_file: "events_clean.csv"
+
+# Telegram configuration
+telegram:
+  export_format: "json"
+  photos_folder: "photos"
+  result_file: "result.json"
+
+# Data ingestion
+ingestion:
+  date_format: "%Y-%m-%d %H:%M:%S"
+  required_fields:
+    - "id"
+    - "type"
+    - "date"
+    - "from"
+    - "text"
+  
+# Feature engineering
+features:
+  time_window: 60  # minutes
+  event_types:
+    - "motion_detected"
+    - "door_opened"
+    - "alarm_triggered"
+    - "camera_capture"
+  
+# EDA configuration
+eda:
+  figures_path: "reports/figures/"
+  time_analysis:
+    hourly: true
+    daily: true
+    weekly: true
+  correlation_threshold: 0.7
+
+# Arduino configuration
+arduino:
+  port: "/dev/ttyUSB0"
+  baud_rate: 9600
+  timeout: 1
+  sensors:
+    - name: "pir_sensor"
+      pin: 2
+      type: "digital"
+    - name: "door_sensor"
+      pin: 3
+      type: "digital"
+
+# Camera configuration
+camera:
+  index: 0
+  resolution:
+    width: 640
+    height: 480
+  fps: 30
+  save_path: "data/raw/captures/"
+
+# Model configuration
+model:
+  type: "object_detection"
+  framework: "opencv"
+  confidence_threshold: 0.5
+  nms_threshold: 0.4
+
+# Reporting
+reports:
+  output_path: "reports/"
+  formats:
+    - "markdown"
+    - "html"
+  include_visualizations: true
