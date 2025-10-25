@@ -33,7 +33,8 @@ env/
 .env
 
 # Data files
-data/raw/*
+# Se eliminó la exclusión de data/raw/*
+# data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
