@@ -2,7 +2,6 @@
 
 Sistema de seguridad inteligente que integra Arduino, sensores, visión artificial y análisis de datos para monitoreo y detección de eventos.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Arduino](https://img.shields.io/badge/Arduino-00979D?logo=arduino&logoColor=white)](https://www.arduino.cc/)
 
@@ -18,7 +17,7 @@ Sistema de seguridad inteligente que integra Arduino, sensores, visión artifici
 - [Notebooks](#-notebooks)
 - [Configuración](#-configuración)
 - [Contribuir](#-contribuir)
-- [Licencia](#-licencia)
+
 
 ---
 
@@ -39,9 +38,7 @@ Sistema de seguridad inteligente que integra Arduino, sensores, visión artifici
 ```
 Seguridad-Inteligente-con-Arduino-y-Vision-Artificial/
 ├── README.md                          # Documentación principal
-├── LICENSE                            # Licencia MIT
 ├── .gitignore                         # Archivos ignorados por git
-├── .env.example                       # Plantilla de variables de entorno
 ├── requirements.txt                   # Dependencias de Python
 │
 ├── configs/
@@ -50,11 +47,6 @@ Seguridad-Inteligente-con-Arduino-y-Vision-Artificial/
 ├── notebooks/
 │   ├── 01_ingesta_y_limpieza.ipynb    # Notebook de ingesta de datos
 │   └── 02_eda_y_features.ipynb        # Notebook de EDA y features
-│
-├── src/
-│   ├── ingest.py                      # Módulo de ingesta de datos
-│   ├── features.py                    # Módulo de feature engineering
-│   └── eda.py                         # Módulo de análisis exploratorio
 │
 ├── data/
 │   ├── raw/
@@ -116,13 +108,6 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Configurar variables de entorno
-
-```bash
-cp .env.example .env
-# Edita .env con tus credenciales
-```
-
 ---
 
 ## 💻 Uso
@@ -137,31 +122,19 @@ data/raw/telegram_export/
 └── photos/
 ```
 
-Ver instrucciones detalladas en `data/raw/telegram_export/README.md`
+### 2. Ejecutar ingesta de datos (Notebook 01)
 
-### 2. Ejecutar ingesta de datos
+Abre y ejecuta todas las celdas de: `notebooks/01_ingesta_y_limpieza.ipynb`.
 
-```bash
-python src/ingest.py
-```
+Esto cargará `result.json`, procesará los mensajes y guardará `data/processed/events_clean.csv`.
 
-O usando el notebook: `notebooks/01_ingesta_y_limpieza.ipynb`
+### 3. Feature Engineering + EDA (Notebook 02)
 
-### 3. Generar características
+Abre y ejecuta todas las celdas de: `notebooks/02_eda_y_features.ipynb`.
 
-```bash
-python src/features.py
-```
+Esto generará características adicionales, visualizaciones y el informe EDA.
 
-### 4. Análisis exploratorio
-
-```bash
-python src/eda.py
-```
-
-O usando el notebook: `notebooks/02_eda_y_features.ipynb`
-
-### 5. Ver el informe
+### 4. Ver el informe
 
 El informe generado estará en: `reports/informe_EDA.md`
 
@@ -221,36 +194,14 @@ camera:
 
 ---
 
-## 🔐 Variables de Entorno
-
-Crea un archivo `.env` basado en `.env.example`:
-
-```bash
-# Telegram API
-TELEGRAM_API_ID=your_api_id
-TELEGRAM_API_HASH=your_api_hash
-TELEGRAM_PHONE=your_phone
-
-# Arduino
-ARDUINO_PORT=/dev/ttyUSB0
-ARDUINO_BAUD_RATE=9600
-
-# Cámara
-CAMERA_INDEX=0
-```
-
----
-
 ## 📊 Pipeline de Datos
 
 ```
 1. Exportación Telegram → result.json + photos/
                           ↓
-2. Ingesta (src/ingest.py) → events_clean.csv
+2. Notebook 01 (ingesta y limpieza) → events_clean.csv
                           ↓
-3. Features (src/features.py) → events_features.csv
-                          ↓
-4. EDA (src/eda.py) → informe_EDA.md + figures/
+3. Notebook 02 (features + EDA) → events_features.csv + informe_EDA.md + figures/
 ```
 
 ---
@@ -264,12 +215,6 @@ Las contribuciones son bienvenidas. Por favor:
 3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
-
----
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver archivo `LICENSE` para más detalles.
 
 ---
 
